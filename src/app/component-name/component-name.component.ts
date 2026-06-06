@@ -1,38 +1,38 @@
-import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SupabaseService } from '../supabase.service';
 
 @Component({
   selector: 'app-component-name',
   standalone: true,
-  imports: [FormsModule, HttpClientModule],
+  imports: [FormsModule],
   templateUrl: './component-name.component.html',
   styleUrl: './component-name.component.css'
 })
 export class ComponentNameComponent {
   username: string = '';
   password: string = '';
+  errorMsg: string = '';
+  successMsg: string = '';
 
   constructor(
-    private http: HttpClient,
+    private supabase: SupabaseService,
     private router: Router
   ) { }
 
-  onLogin() {
-    const loginUrl = `http://localhost:8080/userLogin/login?username=${this.username}&password=${this.password}`;
+  async onLogin() {
+    this.errorMsg = '';
+    this.successMsg = '';
+    const { data, error } = await this.supabase.login(this.username, this.password);
+    if (error || !data) {
+      this.errorMsg = '用户名或密码错误';
+    } else {
+      this.successMsg = '登录成功！';
+    }
+  }
 
-    this.http.get(loginUrl).subscribe(
-      (response: any) => {
-        if (response && response.id != null) {
-          this.router.navigate(['/homepage']);
-        } else {
-          alert('登录失败');
-        }
-      },
-      (error: any) => {
-        console.error('Login failed:', error);
-      }
-    );
+  goToRegister() {
+    this.router.navigate(['/register']);
   }
 }

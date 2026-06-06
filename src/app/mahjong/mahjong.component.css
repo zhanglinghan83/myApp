@@ -1,0 +1,299 @@
+* {
+  box-sizing: border-box;
+}
+
+.page {
+  font-family: 'Segoe UI', sans-serif;
+  padding: 16px;
+  background: #fafafa;
+  min-height: 100vh;
+}
+
+/* ---- Top input row ---- */
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  max-width: 760px; /* 三个输入框合计最大约700px + 标签和间距 */
+}
+
+.label {
+  font-weight: 700;
+  font-size: 12px;
+  color: #555;
+  min-width: 14px;
+  letter-spacing: 0.5px;
+}
+
+.input-row input {
+  flex: 1;
+  min-width: 0;
+  max-width: 233px; /* 700px / 3 */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 7px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.input-row input:focus {
+  border-color: #4a90e2;
+}
+
+/* ---- Honor tile table ---- */
+.honor-table {
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  width: 100%;
+  max-width: 760px;
+  table-layout: fixed;
+}
+
+.honor-table td {
+  padding: 10px 4px;
+  font-size: 15px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.honor-table tr:not(:last-child) td {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.honor-name {
+  width: 2.5em;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+}
+
+.honor-count {
+  color: #444;
+  font-variant-numeric: tabular-nums;
+}
+
+.btn-plus,
+.btn-minus {
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+  width: 100%;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-plus {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.btn-minus {
+  background: #ffebee;
+  color: #c62828;
+}
+
+.btn-plus:hover  { background: #c8e6c9; }
+.btn-minus:hover { background: #ffcdd2; }
+
+/* ---- 控制行（乱序 + 生成） ---- */
+.control-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.shuffle-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  user-select: none;
+}
+
+.shuffle-check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.btn-generate {
+  padding: 0 28px;
+  min-height: 44px;
+  background: #1565c0;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+.btn-generate:hover { background: #0d47a1; }
+.btn-generate:active { background: #0a3880; }
+
+/* ---- 自摸 ---- */
+.tsumo-check {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.tsumo-check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.tsumo-check.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.tsumo-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 14px;
+  padding: 10px 14px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  max-width: 760px;
+}
+
+.tsumo-input {
+  width: 44px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 4px 7px;
+  font-size: 13px;
+  text-align: center;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.tsumo-input:focus { border-color: #4a90e2; }
+
+.tsumo-input:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: #f5f5f5;
+}
+
+.honor-btns {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+  min-width: 0;
+}
+
+.btn-honor {
+  flex: 1;
+  min-width: 0;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.1s, color 0.1s;
+}
+
+.btn-honor.selected {
+  background: #1565c0;
+  color: #fff;
+  border-color: #1565c0;
+}
+
+.btn-honor:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.tsumo-gap {
+  width: 14px;
+  flex-shrink: 0;
+}
+
+.btn-back {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  margin-top: 16px;
+  padding: 0;
+  min-height: 48px;
+  background: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+.btn-back:hover { background: #f5f5f5; }
+
+.section-divider {
+  border: none;
+  border-top: 2px dashed #ccc;
+  margin: 14px 0 4px;
+}
+
+/* ---- Hand rows ---- */
+.hand-row {
+  margin-top: 10px;
+}
+
+.hand-display {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  padding: 8px;
+  background: linear-gradient(135deg, #2d5a27 0%, #1e3d1a 100%);
+  border-radius: 10px;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.tile {
+  /* 48px = 页面边距32px + 手牌区边距16px，再加14px自摸间隔，共62px */
+  width: min(calc((100vw - 62px) / 14), 68px);
+  height: auto;
+  flex-shrink: 0;
+  display: block;
+}

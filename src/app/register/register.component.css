@@ -1,5 +1,4 @@
-/* login.component.css */
-.login-container {
+.register-container {
   max-width: 400px;
   margin: 50px auto;
   padding: 20px;
@@ -30,7 +29,7 @@ input {
 button {
   width: 100%;
   padding: 10px;
-  background-color: #007bff;
+  background-color: #28a745;
   color: white;
   border: none;
   border-radius: 5px;
@@ -38,18 +37,17 @@ button {
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #218838;
 }
 
-.register-link {
+.login-link {
   margin-top: 15px;
-  text-align: center;
 }
 
-.register-link button {
+.login-link button {
   background-color: #6c757d;
 }
 
-.register-link button:hover {
+.login-link button:hover {
   background-color: #5a6268;
 }

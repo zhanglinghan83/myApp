@@ -1,6 +1,6 @@
-<div class="login-container">
-  <h2>Login</h2>
-  <form (ngSubmit)="onLogin(); $event.preventDefault()">
+<div class="register-container">
+  <h2>Register</h2>
+  <form (ngSubmit)="onRegister(); $event.preventDefault()">
     <div>
       <label for="username">Username:</label>
       <input type="text" id="username" [(ngModel)]="username" name="username" required>
@@ -9,7 +9,7 @@
       <label for="password">Password:</label>
       <input type="password" id="password" [(ngModel)]="password" name="password" required>
     </div>
-    <button type="submit">Login</button>
+    <button type="submit">注册</button>
   </form>
   @if (errorMsg) {
     <p style="color:red; margin-top:10px;">{{ errorMsg }}</p>
@@ -17,7 +17,7 @@
   @if (successMsg) {
     <p style="color:green; margin-top:10px;">{{ successMsg }}</p>
   }
-  <div class="register-link">
-    没有账号？<button type="button" (click)="goToRegister()">注册</button>
+  <div class="login-link">
+    <button type="button" (click)="goToLogin()">返回登录</button>
   </div>
 </div>

@@ -1,0 +1,94 @@
+<div class="page">
+
+  <!-- ── 入力画面 ── -->
+  @if (view === 'input') {
+
+    <div class="input-row">
+      <span class="label">m</span>
+      <input type="text" [(ngModel)]="m" (input)="filterInput('m', $event)" maxlength="18">
+      <span class="label">p</span>
+      <input type="text" [(ngModel)]="p" (input)="filterInput('p', $event)" maxlength="18">
+      <span class="label">s</span>
+      <input type="text" [(ngModel)]="s" (input)="filterInput('s', $event)" maxlength="18">
+    </div>
+
+    <table class="honor-table">
+      <tbody>
+        @for (h of honors; track h.name) {
+          <tr>
+            <td class="honor-name">{{ h.name }}</td>
+            <td class="honor-count">{{ h.count }}</td>
+            <td><button class="btn-plus" (click)="add(h)">+</button></td>
+            <td><button class="btn-minus" (click)="remove(h)">−</button></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+
+    <label class="tsumo-check" [class.disabled]="tsumoDisabled">
+      <input type="checkbox" [(ngModel)]="tsumo" (change)="onTsumoChange()" [disabled]="tsumoDisabled">
+      ツモ
+    </label>
+
+    @if (tsumo) {
+      <div class="tsumo-row">
+        <span class="label">m</span>
+        <input class="tsumo-input" type="text" [value]="tsumoM"
+               (input)="onTsumoInput('m', $event)" maxlength="1"
+               [disabled]="tsumoSelected && !tsumoM">
+        <span class="label">p</span>
+        <input class="tsumo-input" type="text" [value]="tsumoP"
+               (input)="onTsumoInput('p', $event)" maxlength="1"
+               [disabled]="tsumoSelected && !tsumoP">
+        <span class="label">s</span>
+        <input class="tsumo-input" type="text" [value]="tsumoS"
+               (input)="onTsumoInput('s', $event)" maxlength="1"
+               [disabled]="tsumoSelected && !tsumoS">
+        <div class="honor-btns">
+          @for (h of honors; track h.name) {
+            <button class="btn-honor"
+                    [class.selected]="tsumoHonor === h.name"
+                    [disabled]="tsumoSelected && tsumoHonor !== h.name"
+                    (click)="selectTsumoHonor(h.name)">
+              {{ h.name }}
+            </button>
+          }
+        </div>
+      </div>
+    }
+
+    <div class="control-row">
+      <label class="shuffle-check">
+        <input type="checkbox" [(ngModel)]="shuffle">
+        シャッフル
+      </label>
+      <button class="btn-generate" (click)="generate()">生成</button>
+    </div>
+
+  }
+
+  <!-- ── 結果画面 ── -->
+  @if (view === 'result') {
+
+    @for (hand of generatedHands; track $index) {
+      @if ($index === 6 && !shuffle) {
+        <hr class="section-divider">
+      }
+      <div class="hand-row">
+        <div class="hand-display">
+          @for (tile of hand.main; track $index) {
+            <img class="tile" [src]="tile" alt="">
+          }
+          @if (hand.tsumoImg) {
+            <span class="tsumo-gap"></span>
+            <img class="tile" [src]="hand.tsumoImg" alt="">
+          }
+        </div>
+      </div>
+    }
+
+    <button class="btn-back" (click)="back()">戻る</button>
+
+  }
+
+</div>
